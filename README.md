@@ -1,3 +1,3 @@
 # snakez
 
-3d snake battler inspired by Armegetron. Written in Godot for CS302 project at UTK.
+3D snake arena game inspired by Armagetron Advanced, intended as a modern spiritual successor. Written as for CS302 project at UTK.

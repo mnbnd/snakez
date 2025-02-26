@@ -29,3 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136857, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00473392, 0.323374, 0.00843654)
 mesh = SubResource("CapsuleMesh_yrl1p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.28425, 6.12411)

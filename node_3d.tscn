@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce6th8xe07dqg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_32u02"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4d1x8"]
+albedo_color = Color(0.224027, 0.818061, 0.292295, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yrl1p"]
+material = SubResource("StandardMaterial3D_4d1x8")
+radius = 0.1
+height = 3.98
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.688355, 0, -0.725374, 0, 1, 0, 0.725374, 0, 0.688355, -3.51638, 0.994868, 3.17294)
+fov = 82.0781
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0233421, -0.0428205, -0.0577598)
+mesh = SubResource("PlaneMesh_32u02")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136857, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00473392, 0.323374, 0.00843654)
+mesh = SubResource("CapsuleMesh_yrl1p")

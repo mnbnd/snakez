@@ -1,6 +1,54 @@
-[gd_scene load_steps=11 format=3 uid="uid://ce6th8xe07dqg"]
+[gd_scene load_steps=15 format=3 uid="uid://ce6th8xe07dqg"]
 
-[ext_resource type="Script" uid="uid://wsmu7h8k2v4q" path="res://snake.gd" id="1_glv2v"]
+[ext_resource type="Shader" uid="uid://dog88r8tojjun" path="res://Sky.gdshader" id="1_glv2v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu6xs"]
+shader = ExtResource("1_glv2v")
+shader_parameter/skyColor = Color(0.258824, 0.607843, 0.964706, 1)
+
+[sub_resource type="Sky" id="Sky_r0du0"]
+sky_material = SubResource("ShaderMaterial_uu6xs")
+
+[sub_resource type="Environment" id="Environment_rxg2q"]
+background_mode = 2
+sky = SubResource("Sky_r0du0")
+
+[sub_resource type="GDScript" id="GDScript_rxg2q"]
+script/source = "extends CharacterBody3D
+
+const MOVE_SPEED = 5.0
+const ROTATION_ANGLE = 90.0
+
+var target_rotation = 0.0
+var current_rotation = 0.0
+var is_rotating = false
+
+func _physics_process(delta):
+	#always move forward
+	var direction = -transform.basis.z  
+	velocity = direction * MOVE_SPEED
+	
+	#rotate if currently turning
+	if is_rotating:
+		current_rotation = lerp_angle(current_rotation, target_rotation, 25.0 * delta)
+		rotation.y = current_rotation
+		
+		#check if rotation is complete
+		if abs(current_rotation - target_rotation) < 0.01:
+			rotation.y = target_rotation
+			is_rotating = false
+	
+	move_and_slide()
+
+func _input(event):
+	if not is_rotating:
+		if event.is_action_pressed(\"ui_left\"):
+			target_rotation += deg_to_rad(ROTATION_ANGLE)
+			is_rotating = true
+		elif event.is_action_pressed(\"ui_right\"):
+			target_rotation -= deg_to_rad(ROTATION_ANGLE)
+			is_rotating = true
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_glv2v"]
 size = Vector3(0.208435, 0.237158, 4.03446)
@@ -15,27 +63,32 @@ height = 3.98
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_glv2v"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_glv2v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
+albedo_color = Color(0.985333, 0.990398, 0.964792, 1)
+metallic = 0.45
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_glv2v"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
-albedo_color = Color(1, 0.02, 0.02, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uu6xs"]
+albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_uu6xs"]
-radius = 0.2
-height = 0.6
+[sub_resource type="BoxMesh" id="BoxMesh_glv2v"]
+material = SubResource("StandardMaterial3D_uu6xs")
+size = Vector3(1, 10, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uu6xs"]
 
 [node name="Node3D" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rxg2q")
+
 [node name="snake" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136857, 0)
-script = ExtResource("1_glv2v")
+script = SubResource("GDScript_rxg2q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="snake"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0113744, 0.268635, 0.251914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.136857, 0)
 shape = SubResource("BoxShape3D_glv2v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="snake"]
@@ -46,14 +99,11 @@ mesh = SubResource("CapsuleMesh_yrl1p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585487, 2.21042)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="snake"]
-transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 0.5, 0.5)
+transform = Transform3D(1, 0, 0, 0, 0.983255, 0.182236, 0, -0.182236, 0.983255, 0.0474523, 1.17152, 1.23152)
 spring_length = 2.5
 
 [node name="Camera3D" type="Camera3D" parent="snake/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.237223, 1.37047)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.28425, 6.12411)
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.025182, -0.376918, -1.33403)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 
@@ -63,22 +113,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92729, 0.0694811, 2.74798)
 [node name="floor" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0.00365591, -0.0126663, -0.00540948)
+transform = Transform3D(25, 0, 0, 0, 1, 0, 0, 0, 25, -0.00743914, -0.0126668, -0.00660348)
 mesh = SubResource("PlaneMesh_glv2v")
-surface_material_override/0 = SubResource("ShaderMaterial_glv2v")
+surface_material_override/0 = SubResource("StandardMaterial3D_glv2v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
 shape = SubResource("WorldBoundaryShape3D_glv2v")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.845015, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.62543, 5.45961)
 
-[node name="apple" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 2.42533, 0.921453, 0)
-material_override = SubResource("StandardMaterial3D_glv2v")
-mesh = SubResource("SphereMesh_uu6xs")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.170571, 0, 0.985345, 0, 1, 0, -0.985345, 0, 0.170571, 5.24636, 5.03186, 0)
+mesh = SubResource("BoxMesh_glv2v")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42708, 0.903399, 0)
-shape = SubResource("SphereShape3D_r0du0")
+shape = SubResource("BoxShape3D_uu6xs")

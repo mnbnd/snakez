@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce6th8xe07dqg"]
+[gd_scene load_steps=8 format=3 uid="uid://ce6th8xe07dqg"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_32u02"]
-size = Vector2(10, 10)
+[ext_resource type="Script" uid="uid://wsmu7h8k2v4q" path="res://snake.gd" id="1_glv2v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glv2v"]
+size = Vector3(0.208435, 0.237158, 4.03446)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4d1x8"]
 albedo_color = Color(0.224027, 0.818061, 0.292295, 1)
@@ -11,24 +13,50 @@ material = SubResource("StandardMaterial3D_4d1x8")
 radius = 0.1
 height = 3.98
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_glv2v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glv2v"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_glv2v"]
+
 [node name="Node3D" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.688355, 0, -0.725374, 0, 1, 0, 0.725374, 0, 0.688355, -3.51638, 0.994868, 3.17294)
-fov = 82.0781
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0233421, -0.0428205, -0.0577598)
-mesh = SubResource("PlaneMesh_32u02")
-
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="snake" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136857, 0)
+script = ExtResource("1_glv2v")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="snake"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0113744, 0.268635, 0.251914)
+shape = SubResource("BoxShape3D_glv2v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00473392, 0.323374, 0.00843654)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="snake"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00473392, 0.257899, 0.256053)
 mesh = SubResource("CapsuleMesh_yrl1p")
+
+[node name="CameraPosTarget" type="Node3D" parent="snake"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585487, 2.21042)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="snake"]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 0.5, 0.5)
+spring_length = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="snake/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.294, 0.111051)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.28425, 6.12411)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92729, 0.0694811, 2.74798)
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0.00365591, -0.0126663, -0.00540948)
+mesh = SubResource("PlaneMesh_glv2v")
+surface_material_override/0 = SubResource("ShaderMaterial_glv2v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("WorldBoundaryShape3D_glv2v")

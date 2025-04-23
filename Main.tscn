@@ -1,8 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://ce6th8xe07dqg"]
+[gd_scene load_steps=23 format=3 uid="uid://ce6th8xe07dqg"]
 
+[ext_resource type="Script" uid="uid://fbkca8wbmdcw" path="res://main.gd" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://rqee1dya1d53" path="res://assets/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="1_cm0pq"]
-[ext_resource type="Script" uid="uid://dinxe7vplvve2" path="res://enemy.gd" id="2_cm0pq"]
 [ext_resource type="MeshLibrary" uid="uid://c8lfbmsbg5spg" path="res://basemeshes.tres" id="3_r0du0"]
+[ext_resource type="Script" uid="uid://c5k1odoa2owfc" path="res://test.gd" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://ce2p23suyhv53" path="res://game_over.gd" id="4_fos0i"]
+[ext_resource type="Script" uid="uid://b8fwqqwr6mfbb" path="res://countdown.gd" id="5_fos0i"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cm0pq"]
 panorama = ExtResource("1_cm0pq")
@@ -35,12 +38,16 @@ func _ready():
 	position_history = []
 	for i in range(initial_body_segments):
 		add_body_segment()
+		
+		
 
 #func change_material():
 
 func die():
 	count = count + 1
 	print(\"collision detected: \", count)
+	
+	get_node(\"../game_over\").game_over()
 	
 	
 	
@@ -134,13 +141,13 @@ material = SubResource("StandardMaterial3D_cm0pq")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uu6xs"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fos0i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_3dxm6"]
-material = SubResource("StandardMaterial3D_fos0i")
+[sub_resource type="SphereMesh" id="SphereMesh_cm0pq"]
+material = SubResource("StandardMaterial3D_r0du0")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_fos0i"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_fos0i"]
 vertices = PackedVector3Array(12.4009, -9.6974, -15.8987, 12.4009, -9.6974, -16.6487, 11.1509, -9.6974, -16.6487, -23.3491, -9.6974, 17.8513, -23.3491, -9.6974, 19.1013, -22.8491, -9.6974, 19.3513, -21.8491, -9.6974, 17.6013, -4.84915, -9.6974, -16.1487, -5.09915, -9.6974, -16.6487, -6.34915, -9.6974, -16.6487, -6.59915, -9.6974, -15.6487, -20.3491, -9.6974, -16.6487, -20.5991, -9.6974, -17.1487, -21.8491, -9.6974, -17.1487, -22.0991, -9.6974, -16.6487, 11.1509, -9.6974, -14.8987, 13.4009, -9.6974, -15.1487, 12.9009, -9.6974, 21.8513, 13.9009, -9.6974, 14.8513, 13.4009, -9.6974, -11.3987, -7.84915, -9.6974, -15.6487, -21.8491, -9.6974, 15.3513, -23.3491, -9.6974, 14.3513, -23.3491, -9.6974, 15.1013, -23.8491, -9.6974, -16.6487, -23.8491, -9.6974, 14.1013, -19.5991, -9.6974, -16.6487, 13.4009, -9.6974, 21.1013, 13.4009, -9.6974, 19.3513, 10.1509, -9.6974, -14.6487, -23.3491, -9.6974, 21.6013, 13.9009, -9.6974, 19.1013, 14.4009, -9.6974, 14.6013, 14.6509, -9.6974, 10.3513, 14.6509, -9.6974, -11.1487, 9.90085, -9.6974, -16.1487, 3.65085, -9.6974, -16.1487, 3.40085, -9.6974, -15.6487, 2.65085, -9.6974, -15.6487, 2.40085, -9.6974, -16.1487, -8.09915, -9.6974, -17.1487, -19.3491, -9.6974, -17.1487)
@@ -174,6 +181,7 @@ uv1_world_triplanar = true
 material = SubResource("StandardMaterial3D_lgr22")
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_3dxm6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3dxm6")
@@ -202,18 +210,16 @@ spring_length = 2.5
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.025182, -0.376918, -1.33403)
 
 [node name="enemy" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.26964, 7.00267)
-script = ExtResource("2_cm0pq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 10)
+script = ExtResource("4_cm0pq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemy"]
-transform = Transform3D(-0.814581, 0, -0.580049, 0, 1, 0, 0.580049, 0, -0.814581, 0, 0, 11.2531)
-mesh = SubResource("SphereMesh_3dxm6")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="enemy"]
+mesh = SubResource("SphereMesh_cm0pq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.2766)
-shape = SubResource("SphereShape3D_r0du0")
+shape = SubResource("SphereShape3D_fos0i")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="enemy"]
 
 [node name="navmesh" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.55809, 13.9474, 16.3576)
@@ -240,3 +246,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92729, 0.0694811, 2.74798)
 [node name="water" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 0.2, 0, 0, 0, 100, -0.574, 1, 23.178)
 mesh = SubResource("BoxMesh_trn2v")
+
+[node name="game_over" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("4_fos0i")
+
+[node name="Panel" type="Panel" parent="game_over"]
+offset_left = 32.0
+offset_top = 118.0
+offset_right = 1423.0
+offset_bottom = 675.0
+
+[node name="restart" type="Button" parent="game_over"]
+offset_left = 527.0
+offset_top = 403.0
+offset_right = 836.0
+offset_bottom = 517.0
+theme_override_font_sizes/font_size = 80
+text = "RESTART"
+
+[node name="Label" type="Label" parent="game_over"]
+offset_left = 311.0
+offset_top = 193.0
+offset_right = 1216.0
+offset_bottom = 374.0
+theme_override_font_sizes/font_size = 120
+text = "GAME OVER"
+
+[node name="countdown" type="CanvasLayer" parent="."]
+script = ExtResource("5_fos0i")
+
+[node name="Label" type="Label" parent="countdown"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="pressed" from="game_over/restart" to="game_over" method="_on_restart_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6fhp5oy7sk3b"]
 
-[ext_resource type="Script" uid="uid://bt416py6dhxgi" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://bt416py6dhxgi" path="res://scripts/menu.gd" id="1_lti8b"]
 [ext_resource type="Texture2D" uid="uid://jq5pu4jga3l1" path="res://assets/snakez_wordlogo_transparent.png" id="2_ouk20"]
 
 [sub_resource type="Theme" id="Theme_ouk20"]

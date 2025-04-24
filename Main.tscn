@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ce6th8xe07dqg"]
+[gd_scene load_steps=27 format=3 uid="uid://ce6th8xe07dqg"]
 
 [ext_resource type="Script" uid="uid://fbkca8wbmdcw" path="res://main.gd" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://rqee1dya1d53" path="res://assets/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="1_cm0pq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ce2p23suyhv53" path="res://game_over.gd" id="4_fos0i"]
 [ext_resource type="Script" uid="uid://b8fwqqwr6mfbb" path="res://countdown.gd" id="5_fos0i"]
 [ext_resource type="AudioStream" uid="uid://bh6r053mj5qww" path="res://assets/explosion.mp3" id="5_lgr22"]
+[ext_resource type="Script" uid="uid://crdt7ohi7p6ok" path="res://zone.gd" id="8_trn2v"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cm0pq"]
 panorama = ExtResource("1_cm0pq")
@@ -296,15 +297,16 @@ script = ExtResource("5_fos0i")
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="zone" type="Area3D" parent="."]
+script = ExtResource("8_trn2v")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="zone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2, 2)
 shape = SubResource("SphereShape3D_lgr22")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="zone"]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 21.0867, 5.13941, 4.18662)
 mesh = SubResource("SphereMesh_lgr22")
 
 [connection signal="pressed" from="game_over/restart" to="game_over" method="_on_restart_pressed"]
-[connection signal="body_entered" from="Area3D" to="player" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="zone" to="player" method="_on_area_3d_body_entered"]

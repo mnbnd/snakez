@@ -1,7 +1,7 @@
 # Enemy.gd
 extends CharacterBody3D
 
-@export var speed := 4.0
+@export var speed := 8.0
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var initial_body_segments: int = 10

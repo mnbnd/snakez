@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ce6th8xe07dqg"]
+[gd_scene load_steps=26 format=3 uid="uid://ce6th8xe07dqg"]
 
 [ext_resource type="Script" uid="uid://fbkca8wbmdcw" path="res://main.gd" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://rqee1dya1d53" path="res://assets/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="1_cm0pq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c5k1odoa2owfc" path="res://test.gd" id="4_cm0pq"]
 [ext_resource type="Script" uid="uid://ce2p23suyhv53" path="res://game_over.gd" id="4_fos0i"]
 [ext_resource type="Script" uid="uid://b8fwqqwr6mfbb" path="res://countdown.gd" id="5_fos0i"]
+[ext_resource type="AudioStream" uid="uid://bh6r053mj5qww" path="res://assets/explosion.mp3" id="5_lgr22"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cm0pq"]
 panorama = ExtResource("1_cm0pq")
@@ -21,7 +22,7 @@ glow_enabled = true
 
 [sub_resource type="GDScript" id="GDScript_rxg2q"]
 script/source = "extends CharacterBody3D
-
+@onready var audio_player = $AudioStreamPlayer3D
 @export var speed: float = 0.1
 @export var initial_body_segments: int = 10
 @export var segment_delay: int = 5
@@ -46,6 +47,8 @@ func _ready():
 func die():
 	count = count + 1
 	print(\"collision detected: \", count)
+	
+	audio_player.play(0)
 	
 	get_node(\"../game_over\").game_over()
 	
@@ -131,6 +134,10 @@ func _physics_process(delta):
 			# If not enough history, position behind based on current facing direction
 			var offset = -forward_direction * (i + 1)
 			segment.global_position = global_position + offset
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	print(\"entered\") # Replace with function body.
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm0pq"]
@@ -180,6 +187,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_trn2v"]
 material = SubResource("StandardMaterial3D_lgr22")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_lgr22"]
+radius = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_lgr22"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_3dxm6")
 
@@ -189,6 +201,10 @@ environment = SubResource("Environment_3dxm6")
 [node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.202, 20)
 script = SubResource("GDScript_rxg2q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -4.202, -20)
+stream = ExtResource("5_lgr22")
 
 [node name="head_mesh" type="MeshInstance3D" parent="player"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
@@ -280,4 +296,15 @@ script = ExtResource("5_fos0i")
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2, 2)
+shape = SubResource("SphereShape3D_lgr22")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 21.0867, 5.13941, 4.18662)
+mesh = SubResource("SphereMesh_lgr22")
+
 [connection signal="pressed" from="game_over/restart" to="game_over" method="_on_restart_pressed"]
+[connection signal="body_entered" from="Area3D" to="player" method="_on_area_3d_body_entered"]

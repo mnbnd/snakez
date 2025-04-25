@@ -21,4 +21,6 @@ mesh = SubResource("SphereMesh_4x0hx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_8txok")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

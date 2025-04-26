@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://ce6th8xe07dqg"]
+[gd_scene load_steps=29 format=3 uid="uid://ce6th8xe07dqg"]
 
 [ext_resource type="Script" uid="uid://fbkca8wbmdcw" path="res://scripts/main.gd" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://rqee1dya1d53" path="res://assets/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="1_cm0pq"]
-[ext_resource type="AudioStream" uid="uid://dv28q3hb4m5rc" path="res://assets/mushroom.mp3" id="3_03owx"]
+[ext_resource type="AudioStream" uid="uid://shlg7i7ft4ei" path="res://assets/chomp.ogg" id="3_03owx"]
 [ext_resource type="MeshLibrary" uid="uid://c8lfbmsbg5spg" path="res://basemeshes.tres" id="3_r0du0"]
+[ext_resource type="AudioStream" uid="uid://dwssq5wtm7mco" path="res://assets/death.wav" id="3_wkp8b"]
 [ext_resource type="Script" uid="uid://c5k1odoa2owfc" path="res://scripts/test.gd" id="4_cm0pq"]
 [ext_resource type="Script" uid="uid://ce2p23suyhv53" path="res://scripts/game_over.gd" id="4_fos0i"]
 [ext_resource type="Script" uid="uid://b8fwqqwr6mfbb" path="res://scripts/countdown.gd" id="5_fos0i"]
@@ -24,7 +25,8 @@ glow_enabled = true
 
 [sub_resource type="GDScript" id="GDScript_rxg2q"]
 script/source = "extends CharacterBody3D
-@onready var audio_player = $mushroom_sfx
+@onready var chomp = $chomp_sfx
+@onready var deathsound = $die_sfx
 @export var speed: float = 0.1
 @export var initial_body_segments: int = 10
 @export var segment_delay: int = 5
@@ -48,6 +50,8 @@ func _ready():
 
 func die():
 	count = count + 1
+	deathsound.play(0)
+	
 	print(\"collision detected: \", count)
 	
 	
@@ -61,12 +65,12 @@ func die():
 func add_body_segment():
 	# Create a physics body to hold the mesh and collision
 	if body_segments.size() > 9:
-		audio_player.play(0)
+		chomp.play(0)
 	
 	var body = StaticBody3D.new()
 	add_child(body)
 
-	# Create the mesh instance
+	# Create the mesh instanceaudio_player
 	var segment = MeshInstance3D.new()
 	var sphere_mesh = SphereMesh.new()
 	
@@ -160,9 +164,10 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_r0du0")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fos0i"]
+radius = 0.001
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_fos0i"]
-vertices = PackedVector3Array(12.4009, -9.6974, -15.8987, 12.4009, -9.6974, -16.6487, 11.1509, -9.6974, -16.6487, -23.3491, -9.6974, 17.8513, -23.3491, -9.6974, 19.1013, -22.8491, -9.6974, 19.3513, -21.8491, -9.6974, 17.6013, -4.84915, -9.6974, -16.1487, -5.09915, -9.6974, -16.6487, -6.34915, -9.6974, -16.6487, -6.59915, -9.6974, -15.6487, -20.3491, -9.6974, -16.6487, -20.5991, -9.6974, -17.1487, -21.8491, -9.6974, -17.1487, -22.0991, -9.6974, -16.6487, 11.1509, -9.6974, -14.8987, 13.4009, -9.6974, -15.1487, 12.9009, -9.6974, 21.8513, 13.9009, -9.6974, 14.8513, 13.4009, -9.6974, -11.3987, -7.84915, -9.6974, -15.6487, -21.8491, -9.6974, 15.3513, -23.3491, -9.6974, 14.3513, -23.3491, -9.6974, 15.1013, -23.8491, -9.6974, -16.6487, -23.8491, -9.6974, 14.1013, -19.5991, -9.6974, -16.6487, 13.4009, -9.6974, 21.1013, 13.4009, -9.6974, 19.3513, 10.1509, -9.6974, -14.6487, -23.3491, -9.6974, 21.6013, 13.9009, -9.6974, 19.1013, 14.4009, -9.6974, 14.6013, 14.6509, -9.6974, 10.3513, 14.6509, -9.6974, -11.1487, 9.90085, -9.6974, -16.1487, 3.65085, -9.6974, -16.1487, 3.40085, -9.6974, -15.6487, 2.65085, -9.6974, -15.6487, 2.40085, -9.6974, -16.1487, -8.09915, -9.6974, -17.1487, -19.3491, -9.6974, -17.1487)
+vertices = PackedVector3Array(20.9589, -9.75, 0.45894, 20.9589, -9.75, -0.29106, 19.7089, -9.75, -0.29106, -14.7911, -9.75, 34.2089, -14.7911, -9.75, 35.4589, -14.2911, -9.75, 35.7089, -13.2911, -9.75, 33.9589, 3.70894, -9.75, 0.20894, 3.45894, -9.75, -0.29106, 2.20894, -9.75, -0.29106, 1.95894, -9.75, 0.70894, -11.7911, -9.75, -0.29106, -12.0411, -9.75, -0.79106, -13.2911, -9.75, -0.79106, -13.5411, -9.75, -0.29106, 19.7089, -9.75, 1.45894, 21.9589, -9.75, 1.20894, 21.4589, -9.75, 38.2089, 22.4589, -9.75, 31.2089, 21.9589, -9.75, 4.95894, 0.708941, -9.75, 0.70894, -13.2911, -9.75, 31.7089, -14.7911, -9.75, 30.7089, -14.7911, -9.75, 31.4589, -15.2911, -9.75, -0.29106, -15.2911, -9.75, 30.4589, -11.0411, -9.75, -0.29106, 21.9589, -9.75, 37.4589, 21.9589, -9.75, 35.7089, 18.7089, -9.75, 1.70894, -14.7911, -9.75, 37.9589, 22.4589, -9.75, 35.4589, 22.9589, -9.75, 30.9589, 23.2089, -9.75, 26.7089, 23.2089, -9.75, 5.20894, 18.4589, -9.75, 0.20894, 12.2089, -9.75, 0.20894, 11.9589, -9.75, 0.70894, 11.2089, -9.75, 0.70894, 10.9589, -9.75, 0.20894, 0.458941, -9.75, -0.79106, -10.7911, -9.75, -0.79106)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(2, 0, 15), PackedInt32Array(15, 0, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 21), PackedInt32Array(21, 17, 6), PackedInt32Array(21, 23, 22), PackedInt32Array(22, 25, 24), PackedInt32Array(11, 26, 20), PackedInt32Array(14, 11, 20), PackedInt32Array(27, 17, 28), PackedInt32Array(15, 16, 29), PackedInt32Array(29, 16, 19), PackedInt32Array(5, 6, 30), PackedInt32Array(30, 6, 17), PackedInt32Array(18, 31, 28), PackedInt32Array(32, 18, 33), PackedInt32Array(33, 18, 34), PackedInt32Array(34, 18, 19), PackedInt32Array(14, 20, 24), PackedInt32Array(24, 20, 22), PackedInt32Array(22, 20, 21), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 29), PackedInt32Array(20, 10, 19), PackedInt32Array(18, 28, 17), PackedInt32Array(7, 39, 38), PackedInt32Array(38, 37, 29), PackedInt32Array(7, 38, 10), PackedInt32Array(10, 38, 29), PackedInt32Array(10, 29, 19), PackedInt32Array(41, 40, 26), PackedInt32Array(26, 40, 20)]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cm0pq"]
@@ -203,13 +208,17 @@ script = ExtResource("1_3dxm6")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3dxm6")
 
-[node name="player" type="CharacterBody3D" parent="."]
+[node name="player" type="CharacterBody3D" parent="." groups=["snake"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.202, 20)
 script = SubResource("GDScript_rxg2q")
 
-[node name="mushroom_sfx" type="AudioStreamPlayer3D" parent="player"]
+[node name="die_sfx" type="AudioStreamPlayer3D" parent="player"]
+stream = ExtResource("3_wkp8b")
+
+[node name="chomp_sfx" type="AudioStreamPlayer3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -4.202, -20)
 stream = ExtResource("3_03owx")
+volume_db = 6.0
 
 [node name="head_mesh" type="MeshInstance3D" parent="player"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
@@ -230,24 +239,26 @@ spring_length = 2.5
 [node name="Camera3D" type="Camera3D" parent="player/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.025182, -0.376918, -1.33403)
 
-[node name="enemy" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 10)
+[node name="enemy" type="CharacterBody3D" parent="." groups=["snake"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 25)
 script = ExtResource("4_cm0pq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemy"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.5, 0)
 mesh = SubResource("SphereMesh_cm0pq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("SphereShape3D_fos0i")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="enemy"]
 
 [node name="navmesh" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.55809, 13.9474, 16.3576)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
 navigation_mesh = SubResource("NavigationMesh_fos0i")
 
 [node name="GridMap" type="GridMap" parent="navmesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55809, -13.9474, -16.3576)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14, 0)
 mesh_library = ExtResource("3_r0du0")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
@@ -273,32 +284,46 @@ process_mode = 3
 script = ExtResource("4_fos0i")
 
 [node name="Panel" type="Panel" parent="game_over"]
-offset_left = 32.0
-offset_top = 118.0
-offset_right = 1423.0
-offset_bottom = 675.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -695.5
+offset_top = -278.5
+offset_right = 695.5
+offset_bottom = 278.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="restart" type="Button" parent="game_over"]
-offset_left = 236.0
-offset_top = 408.0
-offset_right = 578.0
-offset_bottom = 526.0
+offset_left = 380.0
+offset_top = 405.0
+offset_right = 730.0
+offset_bottom = 532.0
 theme_override_font_sizes/font_size = 80
 text = "RESTART"
 
 [node name="Label" type="Label" parent="game_over"]
-offset_left = 311.0
-offset_top = 193.0
-offset_right = 1216.0
-offset_bottom = 374.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -281.0
+offset_right = 344.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 120
 text = "GAME OVER"
 
 [node name="exit" type="Button" parent="game_over"]
-offset_left = 707.0
-offset_top = 407.0
-offset_right = 1045.0
-offset_bottom = 539.0
+offset_left = 896.0
+offset_top = 399.0
+offset_right = 1191.0
+offset_bottom = 531.0
 theme_override_font_sizes/font_size = 90
 text = "EXIT"
 

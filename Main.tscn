@@ -342,7 +342,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2, 2)
 shape = SubResource("SphereShape3D_lgr22")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="zone"]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 21.0867, 5.13941, 4.18662)
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 4.0867, 11.1394, 6.18662)
 mesh = SubResource("SphereMesh_lgr22")
 
 [node name="food" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_03owx")]

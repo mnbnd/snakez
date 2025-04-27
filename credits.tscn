@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3iq7b7m5q4l5"]
 
-[ext_resource type="Script" uid="uid://ddqgetv4w7bo1" path="res://credits.gd" id="1_nm7lk"]
+[ext_resource type="Script" uid="uid://ddqgetv4w7bo1" path="res://scripts/credits.gd" id="1_nm7lk"]
 
 [node name="credits" type="Control"]
 layout_mode = 3
@@ -26,17 +26,19 @@ theme_override_font_sizes/font_size = 40
 text = "SNAKEZ - by Jacob Yuill and John Sievertsen
 
 Ground Meshes - https://kenney.nl/assets/platformer-kit 
-(LICENSED UNDER CREATIVE COMMONS CC0)
 
 Skybox - https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky 
-(LICENSED UNDER CREATIVE COMMONS CC0)"
+
+Food Meshes- https://quaternius.com/packs/ultimatefood.html
+
+All assets used are licensed under Creative Commons 0."
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 477.0
-offset_top = 559.0
-offset_right = 1134.0
-offset_bottom = 710.0
+offset_left = 476.0
+offset_top = 596.0
+offset_right = 1133.0
+offset_bottom = 747.0
 theme_override_font_sizes/font_size = 50
 text = "Return to Main Menu"
 

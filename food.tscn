@@ -1,20 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2k7ceo2qi22k"]
+[gd_scene load_steps=4 format=3 uid="uid://d2k7ceo2qi22k"]
 
 [ext_resource type="Script" uid="uid://dnwj6wxa4hmln" path="res://scripts/food.gd" id="1_8txok"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8txok"]
-albedo_color = Color(0, 0, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_4x0hx"]
-material = SubResource("StandardMaterial3D_8txok")
+[ext_resource type="PackedScene" uid="uid://vjkpdu80ks3p" path="res://assets/Apple.glb" id="2_pohk7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8txok"]
 
 [node name="Node3D" type="Node3D" groups=["Food"]]
 script = ExtResource("1_8txok")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["Food"]]
-mesh = SubResource("SphereMesh_4x0hx")
+[node name="Apple" parent="." instance=ExtResource("2_pohk7")]
 
 [node name="Area3D" type="Area3D" parent="."]
 

@@ -6,6 +6,9 @@ extends CharacterBody3D
 @export var segment_delay: int = 5
 @export var turn_distance: float = 4.0  # Distance between turns
 @export var food_seek_bias: float = 1.0  # 0.0 = random, 1.0 = always toward food
+@onready var chomp      = $"../player/chomp_sfx"
+@onready var death_sfx      = $"../player/death_sfx"
+
 
 var body_segments: Array    = []
 var position_history: Array = []
@@ -32,6 +35,9 @@ func _ready():
 		add_body_segment()
 
 func add_body_segment():
+	if body_segments.size() > 9:
+		chomp.play()
+	
 	var idx = body_segments.size()
 	var body = StaticBody3D.new()
 	add_child(body)
@@ -139,6 +145,7 @@ func _get_nearest_food():
 	return nearest
 
 func die():
+	death_sfx.play()
 	print("Enemy died")
 	get_node("../victory").victory()
 	queue_free()

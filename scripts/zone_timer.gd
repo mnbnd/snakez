@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var start_time_sec: float = 20.0  # seconds to count down from
+@export var start_time_sec: float = 45.0  # seconds to count down from
 var time_left: float
 
 @onready var timer_label: Label = $Label

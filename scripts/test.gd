@@ -1,4 +1,3 @@
-# Enemy.gd
 extends CharacterBody3D
 
 @export var speed := 5.5
@@ -25,7 +24,7 @@ var next_turn_position: Vector3 = Vector3.ZERO
 var turning: bool = false
 
 func _ready():
-	# Head lives on layer 1, and only collides with layer 2 (our collidable segments)
+	#head lives on layer 1, and only collides with layer 2 (our collidable segments)
 	collision_layer = 1
 	collision_mask  = 2
 

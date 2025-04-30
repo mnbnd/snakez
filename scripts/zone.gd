@@ -4,7 +4,7 @@ extends Area3D
 @export var start_radius: float = 40.0   # Starting radius of the sphere
 @export var shrink_rate: float = 1.0     # Units per second
 @export var min_radius: float = 0.1      # Minimum allowed radius
-@export var delay_time: float = 20.0     # Seconds to wait before showing storm
+@export var delay_time: float = 45.0     # Seconds to wait before showing storm
 
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var mesh_instance: MeshInstance3D  = $MeshInstance3D

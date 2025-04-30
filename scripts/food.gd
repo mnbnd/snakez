@@ -4,16 +4,17 @@ extends Node3D
 @export var player: Node3D
 @export var enemy: Node3D 
 
-@export var x_offset = -10
+@export var x_offset = 5
 @export var y_offset = 10
 
 # Map boundaries for random spawning
-@export var map_size: Vector3 = Vector3(10, 0, 10)
+@export var map_size: Vector3 = Vector3(20, 0, 20)
 
 func _ready():
 	# Spawn the first piece of food
 	add_to_group("Food")
-	spawn_food()
+	for i in range(20):
+		spawn_food()
 
 func spawn_food():
 	var x = randf_range(-map_size.x, map_size.x) + x_offset

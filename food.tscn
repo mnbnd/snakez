@@ -1,18 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2k7ceo2qi22k"]
 
 [ext_resource type="Script" uid="uid://dnwj6wxa4hmln" path="res://scripts/food.gd" id="1_8txok"]
-<<<<<<< Updated upstream
-[ext_resource type="PackedScene" uid="uid://iutcylu866n3" path="res://assets/Apple.glb" id="2_pohk7"]
-=======
-[ext_resource type="PackedScene" uid="uid://cwkk8w87trqbl" path="res://assets/Apple.glb" id="2_pohk7"]
->>>>>>> Stashed changes
+[ext_resource type="PackedScene" uid="uid://cmsmbkhbbbra6" path="res://assets/Apple.glb" id="2_pohk7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8txok"]
 
 [node name="Node3D" type="Node3D" groups=["Food"]]
 script = ExtResource("1_8txok")
 
-[node name="Apple" parent="." instance=ExtResource("2_pohk7")]
+[node name="Apple" type="Node3D" parent="." instance=ExtResource("2_pohk7")]
 
 [node name="Area3D" type="Area3D" parent="."]
 

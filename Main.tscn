@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://fbkca8wbmdcw" path="res://scripts/main.gd" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://rqee1dya1d53" path="res://assets/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="1_cm0pq"]
+<<<<<<< Updated upstream
 [ext_resource type="AudioStream" uid="uid://dpkrhpc8yw7bx" path="res://assets/chomp.ogg" id="3_03owx"]
 [ext_resource type="AudioStream" uid="uid://cbyiingifyuk6" path="res://assets/death.ogg" id="3_5vvyt"]
+=======
+[ext_resource type="AudioStream" uid="uid://ciq3mgi4i1kns" path="res://assets/chomp.ogg" id="3_03owx"]
+[ext_resource type="AudioStream" uid="uid://dv2votgrr1gpe" path="res://assets/death.ogg" id="3_5vvyt"]
+>>>>>>> Stashed changes
 [ext_resource type="MeshLibrary" uid="uid://c8lfbmsbg5spg" path="res://basemeshes.tres" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://c5k1odoa2owfc" path="res://scripts/test.gd" id="4_cm0pq"]
 [ext_resource type="Script" uid="uid://ce2p23suyhv53" path="res://scripts/game_over.gd" id="4_fos0i"]
@@ -11,7 +16,11 @@
 [ext_resource type="Script" uid="uid://crdt7ohi7p6ok" path="res://scripts/zone.gd" id="8_trn2v"]
 [ext_resource type="PackedScene" uid="uid://d2k7ceo2qi22k" path="res://food.tscn" id="9_03owx"]
 [ext_resource type="Script" uid="uid://dvlvihc831ke3" path="res://scripts/zone_timer.gd" id="11_20pc6"]
+<<<<<<< Updated upstream
 [ext_resource type="AudioStream" uid="uid://c8ripdx3nm88q" path="res://assets/storm_coming.mp3" id="12_5vvyt"]
+=======
+[ext_resource type="AudioStream" uid="uid://ujs5e25bo3d4" path="res://assets/storm_coming.mp3" id="12_5vvyt"]
+>>>>>>> Stashed changes
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cm0pq"]
 panorama = ExtResource("1_cm0pq")

@@ -2,7 +2,11 @@
 
 importer="mp3"
 type="AudioStreamMP3"
+<<<<<<< Updated upstream
 uid="uid://c8ripdx3nm88q"
+=======
+uid="uid://ujs5e25bo3d4"
+>>>>>>> Stashed changes
 path="res://.godot/imported/storm_coming.mp3-6122d15840e6160f312da85800272fd7.mp3str"
 
 [deps]

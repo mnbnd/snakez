@@ -2,7 +2,11 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
+<<<<<<< Updated upstream
 uid="uid://cbyiingifyuk6"
+=======
+uid="uid://dv2votgrr1gpe"
+>>>>>>> Stashed changes
 path="res://.godot/imported/death.ogg-e1b1ab062469f9ebc6cdbf6b576260cf.oggvorbisstr"
 
 [deps]

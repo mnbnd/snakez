@@ -1,7 +1,7 @@
 #ENEMY LOGIC
 extends CharacterBody3D
 
-@export var speed := 5.5
+@export var speed := 5.75
 @export var initial_body_segments: int = 10
 @export var segment_delay: int = 5
 @export var turn_distance: float = 4.0  # Distance between turns

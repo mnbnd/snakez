@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6fhp5oy7sk3b"]
 
 [ext_resource type="Script" uid="uid://bt416py6dhxgi" path="res://scripts/menu.gd" id="1_lti8b"]
-[ext_resource type="Script" path="res://scripts/soundtrack.gd" id="1_ouk20"]
+[ext_resource type="Script" uid="uid://xi74ftnb8lx5" path="res://scripts/soundtrack.gd" id="1_ouk20"]
 [ext_resource type="Texture2D" uid="uid://jq5pu4jga3l1" path="res://assets/snakez_wordlogo_transparent.png" id="2_ouk20"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouk20"]
@@ -34,33 +34,33 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ouk20")
 
 [node name="SnakezWordlogoTransparent" type="Sprite2D" parent="."]
-position = Vector2(535, 63)
+position = Vector2(726, 67)
 texture = ExtResource("2_ouk20")
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 212.0
-offset_right = 762.0
-offset_bottom = 358.0
+offset_left = 205.0
+offset_top = 265.0
+offset_right = 668.0
+offset_bottom = 411.0
 theme_override_font_sizes/font_size = 60
 text = "Play"
 
 [node name="Credits" type="Button" parent="."]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 385.0
-offset_right = 762.0
-offset_bottom = 531.0
+offset_left = 205.0
+offset_top = 438.0
+offset_right = 668.0
+offset_bottom = 584.0
 theme_override_font_sizes/font_size = 60
 text = "Credits"
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 560.0
-offset_right = 762.0
-offset_bottom = 706.0
+offset_left = 205.0
+offset_top = 613.0
+offset_right = 668.0
+offset_bottom = 759.0
 theme_override_font_sizes/font_size = 60
 text = "Exit"
 
@@ -69,10 +69,10 @@ script = ExtResource("1_ouk20")
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 192.0
-offset_right = 1329.0
-offset_bottom = 365.0
+offset_left = 823.0
+offset_top = 258.0
+offset_right = 1357.0
+offset_bottom = 431.0
 
 [node name="cam_speed" type="LineEdit" parent="Panel2"]
 layout_mode = 0
@@ -92,7 +92,7 @@ offset_right = 524.0
 offset_bottom = 76.0
 theme_override_font_sizes/font_size = 25
 text = "Change camera turn speed (float) . Ex:
-2.0 = slow | 6.0 = medium | 200.0 = instant"
+2.0 = slow | 6.0 = medium | 50.0 = instant"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]

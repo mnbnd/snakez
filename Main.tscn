@@ -1,18 +1,17 @@
-[gd_scene load_steps=35 format=3 uid="uid://ce6th8xe07dqg"]
+[gd_scene load_steps=34 format=3 uid="uid://ce6th8xe07dqg"]
 
-[ext_resource type="Script" uid="uid://fbkca8wbmdcw" path="res://scripts/main.gd" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://rqee1dya1d53" path="res://assets/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="1_cm0pq"]
-[ext_resource type="AudioStream" uid="uid://bisrj8h4dju2" path="res://assets/chomp.ogg" id="3_03owx"]
-[ext_resource type="AudioStream" uid="uid://dhm13ml1y81kw" path="res://assets/death.ogg" id="3_5vvyt"]
+[ext_resource type="AudioStream" uid="uid://p74uectvmukl" path="res://assets/chomp.ogg" id="3_03owx"]
+[ext_resource type="AudioStream" uid="uid://ju5mymmfuh51" path="res://assets/death.ogg" id="3_5vvyt"]
 [ext_resource type="MeshLibrary" uid="uid://c8lfbmsbg5spg" path="res://basemeshes.tres" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://c5k1odoa2owfc" path="res://scripts/test.gd" id="4_cm0pq"]
 [ext_resource type="Script" uid="uid://ce2p23suyhv53" path="res://scripts/game_over.gd" id="4_fos0i"]
-[ext_resource type="Script" uid="uid://m5qko5flhx3r" path="res://scripts/victory.gd" id="8_5vvyt"]
+[ext_resource type="Script" uid="uid://tiyymdy78n3q" path="res://scripts/victory.gd" id="8_5vvyt"]
 [ext_resource type="Script" uid="uid://crdt7ohi7p6ok" path="res://scripts/zone.gd" id="8_trn2v"]
 [ext_resource type="PackedScene" uid="uid://d2k7ceo2qi22k" path="res://food.tscn" id="9_03owx"]
-[ext_resource type="Script" uid="uid://dvlvihc831ke3" path="res://scripts/zone_timer.gd" id="11_20pc6"]
-[ext_resource type="AudioStream" uid="uid://dcyydqhm0568i" path="res://assets/storm_coming.mp3" id="12_5vvyt"]
-[ext_resource type="Texture2D" uid="uid://casf62dbdfvse" path="res://assets/cobble.webp" id="13_c6i3y"]
+[ext_resource type="Script" uid="uid://dh5s3wuh03h4c" path="res://scripts/zone_timer.gd" id="11_20pc6"]
+[ext_resource type="AudioStream" uid="uid://qx6eas24ovt5" path="res://assets/storm_coming.mp3" id="12_5vvyt"]
+[ext_resource type="Texture2D" uid="uid://sl7kcxcpkf26" path="res://assets/cobble.webp" id="13_c6i3y"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cm0pq"]
 panorama = ExtResource("1_cm0pq")
@@ -204,7 +203,6 @@ material = SubResource("StandardMaterial3D_c2ibq")
 size = Vector3(75, 4, 2)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_3dxm6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.65092, -0.759146, 0, 0.759146, -0.65092, 0, 19, 0)
@@ -289,18 +287,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -695.5
-offset_top = -278.5
-offset_right = 695.5
-offset_bottom = 278.5
+offset_left = -652.0
+offset_top = -307.0
+offset_right = 739.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="restart" type="Button" parent="game_over"]
-offset_left = 380.0
-offset_top = 405.0
-offset_right = 730.0
-offset_bottom = 532.0
+offset_left = 613.0
+offset_top = 445.0
+offset_right = 963.0
+offset_bottom = 572.0
 theme_override_font_sizes/font_size = 80
 text = "RESTART"
 
@@ -310,20 +308,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -344.0
-offset_top = -281.0
-offset_right = 344.0
-offset_bottom = -100.0
+offset_left = -287.0
+offset_top = -313.0
+offset_right = 401.0
+offset_bottom = -132.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 120
 text = "GAME OVER"
 
 [node name="exit" type="Button" parent="game_over"]
-offset_left = 896.0
-offset_top = 399.0
-offset_right = 1191.0
-offset_bottom = 531.0
+offset_left = 1119.0
+offset_top = 440.0
+offset_right = 1414.0
+offset_bottom = 572.0
 theme_override_font_sizes/font_size = 90
 text = "EXIT"
 
@@ -337,12 +335,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -695.5
-offset_top = -278.5
-offset_right = 695.5
-offset_bottom = 278.5
+offset_left = -662.5
+offset_top = -291.0
+offset_right = 728.5
+offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="victory"]
 anchors_preset = 8
@@ -350,28 +349,28 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -344.0
-offset_top = -281.0
-offset_right = 344.0
-offset_bottom = -100.0
+offset_left = -269.0
+offset_top = -301.0
+offset_right = 419.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 120
 text = "VICTORY!!!!"
 
 [node name="restart" type="Button" parent="victory"]
-offset_left = 379.0
-offset_top = 404.0
-offset_right = 727.0
-offset_bottom = 535.0
+offset_left = 574.0
+offset_top = 453.0
+offset_right = 922.0
+offset_bottom = 584.0
 theme_override_font_sizes/font_size = 80
 text = "RESTART"
 
 [node name="EXIT" type="Button" parent="victory"]
-offset_left = 884.0
-offset_top = 402.0
-offset_right = 1232.0
-offset_bottom = 533.0
+offset_left = 1105.0
+offset_top = 454.0
+offset_right = 1453.0
+offset_bottom = 586.0
 theme_override_font_sizes/font_size = 90
 text = "EXIT"
 
@@ -397,16 +396,16 @@ script = ExtResource("11_20pc6")
 stream = ExtResource("12_5vvyt")
 
 [node name="Panel" type="Panel" parent="zone_timer"]
-offset_left = 1176.0
-offset_top = 3.0
-offset_right = 1599.0
-offset_bottom = 57.0
+offset_left = 1496.0
+offset_top = -3.0
+offset_right = 1919.0
+offset_bottom = 51.0
 
 [node name="Label" type="Label" parent="zone_timer"]
-offset_left = 1182.0
-offset_top = 3.0
-offset_right = 1581.0
-offset_bottom = 77.0
+offset_left = 1502.0
+offset_top = -3.0
+offset_right = 1901.0
+offset_bottom = 71.0
 theme_override_font_sizes/font_size = 30
 
 [node name="wall" type="StaticBody3D" parent="." groups=["wall"]]

@@ -13,15 +13,23 @@ script = ExtResource("1_nm7lk")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 1600.0
-offset_bottom = 898.0
+offset_left = 1.0
+offset_right = 1933.0
+offset_bottom = 1111.0
 
 [node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 43.0
-offset_right = 1729.0
-offset_bottom = 675.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -852.5
+offset_top = -491.5
+offset_right = 852.5
+offset_bottom = 143.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "SNAKEZ - by Jacob Yuill and John Sievertsen
 
@@ -37,10 +45,10 @@ Soundtrack composed by John"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 476.0
-offset_top = 709.0
-offset_right = 1133.0
-offset_bottom = 860.0
+offset_left = 636.0
+offset_top = 809.0
+offset_right = 1293.0
+offset_bottom = 960.0
 theme_override_font_sizes/font_size = 50
 text = "Return to Main Menu"
 

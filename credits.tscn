@@ -31,14 +31,16 @@ Skybox - https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky
 
 Food Meshes- https://quaternius.com/packs/ultimatefood.html
 
-All assets used are licensed under Creative Commons 0."
+All assets used are licensed under Creative Commons 0.
+
+Soundtrack composed by John"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 476.0
-offset_top = 596.0
+offset_top = 709.0
 offset_right = 1133.0
-offset_bottom = 747.0
+offset_bottom = 860.0
 theme_override_font_sizes/font_size = 50
 text = "Return to Main Menu"
 

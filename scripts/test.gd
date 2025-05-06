@@ -1,3 +1,4 @@
+#ENEMY LOGIC
 extends CharacterBody3D
 
 @export var speed := 5.5

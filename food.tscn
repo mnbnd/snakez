@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2k7ceo2qi22k"]
 
 [ext_resource type="Script" uid="uid://dnwj6wxa4hmln" path="res://scripts/food.gd" id="1_8txok"]
-[ext_resource type="PackedScene" uid="uid://vjkpdu80ks3p" path="res://assets/Apple.glb" id="2_pohk7"]
+[ext_resource type="PackedScene" uid="uid://os2qv2tbqrtm" path="res://assets/Apple.glb" id="2_pohk7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8txok"]
 

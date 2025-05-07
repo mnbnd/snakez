@@ -1,17 +1,17 @@
 [gd_scene load_steps=34 format=3 uid="uid://ce6th8xe07dqg"]
 
 [ext_resource type="Texture2D" uid="uid://rqee1dya1d53" path="res://assets/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="1_cm0pq"]
-[ext_resource type="AudioStream" uid="uid://p74uectvmukl" path="res://assets/chomp.ogg" id="3_03owx"]
-[ext_resource type="AudioStream" uid="uid://ju5mymmfuh51" path="res://assets/death.ogg" id="3_5vvyt"]
+[ext_resource type="AudioStream" uid="uid://bisrj8h4dju2" path="res://assets/chomp.ogg" id="3_03owx"]
+[ext_resource type="AudioStream" uid="uid://dhm13ml1y81kw" path="res://assets/death.ogg" id="3_5vvyt"]
 [ext_resource type="MeshLibrary" uid="uid://c8lfbmsbg5spg" path="res://basemeshes.tres" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://c5k1odoa2owfc" path="res://scripts/test.gd" id="4_cm0pq"]
 [ext_resource type="Script" uid="uid://ce2p23suyhv53" path="res://scripts/game_over.gd" id="4_fos0i"]
-[ext_resource type="Script" uid="uid://tiyymdy78n3q" path="res://scripts/victory.gd" id="8_5vvyt"]
+[ext_resource type="Script" uid="uid://m5qko5flhx3r" path="res://scripts/victory.gd" id="8_5vvyt"]
 [ext_resource type="Script" uid="uid://crdt7ohi7p6ok" path="res://scripts/zone.gd" id="8_trn2v"]
 [ext_resource type="PackedScene" uid="uid://d2k7ceo2qi22k" path="res://food.tscn" id="9_03owx"]
-[ext_resource type="Script" uid="uid://dh5s3wuh03h4c" path="res://scripts/zone_timer.gd" id="11_20pc6"]
-[ext_resource type="AudioStream" uid="uid://qx6eas24ovt5" path="res://assets/storm_coming.mp3" id="12_5vvyt"]
-[ext_resource type="Texture2D" uid="uid://sl7kcxcpkf26" path="res://assets/cobble.webp" id="13_c6i3y"]
+[ext_resource type="Script" uid="uid://dvlvihc831ke3" path="res://scripts/zone_timer.gd" id="11_20pc6"]
+[ext_resource type="AudioStream" uid="uid://dcyydqhm0568i" path="res://assets/storm_coming.mp3" id="12_5vvyt"]
+[ext_resource type="Texture2D" uid="uid://casf62dbdfvse" path="res://assets/cobble.webp" id="13_c6i3y"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cm0pq"]
 panorama = ExtResource("1_cm0pq")

@@ -9,7 +9,7 @@
 **Method 2: Run Binaries**
 
 1. Clone repo
-2. See ./bin/ for Linux and Windows binaries. Unfortuntaly, exporting to Mac required a lot of overhead that we could not figure out, and neither of us own Macs as well.
+2. See ./bin/ for Linux and Windows binaries. Unfortunately, exporting to Mac required a lot of overhead that we could not figure out, and neither of us own Macs as well.
 
 ## In-game information
 * Only two controls are turn left (A or left arrow) and turn right (D or right arrow)

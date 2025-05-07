@@ -3,7 +3,7 @@
 **Method 1: Godot Debug**
 
 1. Download Godot Engine 4.4
-2. Clone repository and open it in Godot
+2. Clone repository and open project in Godot
 3. Press Run Project/F5 (in top right, looks like menu)
 
 **Method 2: Run Binaries**

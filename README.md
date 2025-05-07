@@ -13,8 +13,7 @@
 
 ## In-game information
 * Only two controls are turn left (A or left arrow) and turn right (D or right arrow)
-* Camera turn speed is set in the main menu, and while we don't have concrete evidence it seems to be different per device. We settled on a default value of 6.0
-
+* Camera turn speed is set in the main menu, and while we don't have concrete evidence it seems to be different per device. We settled on a default value of 6.0 which should be good. If it looks weird just play around with it
 
 ## Bugs + Wrinkles
 * The way we fixed collision is that the first couple of body segments are ignored in collision. This causes the player to be able to phase through the enemy if they precisely maneuver into the aforementioned areas.

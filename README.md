@@ -8,7 +8,7 @@
 
 **Method 2: Run Binaries**
 
-1. Download binaries from releases tab and run .exe/.sh. Unfortunately no Mac as neither of us own one.
+1. Download binaries for your OS (Windows/Linux) in the releases tab and run respective .exe/.sh. Unfortunately no Mac as neither of us own one.
 
 ## In-game information
 * Only two controls are turn left (A or left arrow) and turn right (D or right arrow)

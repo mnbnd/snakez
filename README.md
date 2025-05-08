@@ -1,6 +1,6 @@
 ## How to run:
 
-**Method 1: Godot Debug**
+**Method 1: Godot Engine via source code**
 
 1. Download Godot Engine 4.4
 2. Clone repository and open project in Godot
@@ -8,8 +8,7 @@
 
 **Method 2: Run Binaries**
 
-1. Clone repo
-2. See ./bin/ for Linux and Windows binaries. Unfortunately, exporting to Mac required a lot of overhead that we could not figure out, and neither of us own Macs as well.
+1. Download binaries from releases tab and run .exe/.sh. Unfortunately no Mac as neither of us own one.
 
 ## In-game information
 * Only two controls are turn left (A or left arrow) and turn right (D or right arrow)
